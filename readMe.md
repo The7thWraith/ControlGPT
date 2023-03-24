@@ -28,8 +28,8 @@ When testing the program with a nearly identical prompt, this version of GPT-4 a
 Before you run this, you need to have a few things:
 - A computer with Java installed
 - A GPT-4 API key
-- A Virtual Machine running Windows 10 or macOS (if you value your security)
-- A web domain (if you want it to have an extra layer of freedom)
+- A Virtual Machine running Windows 10 or macOS
+- A web domain (if you want it to have an extra degree of freedom)
 - A comprehensive understanding of the risks involved and the ability to mitigate them
 
 #### Note: I am not responsible for any damage caused by this program. Use at your own risk. This program has been created for educational and research purposes only.
