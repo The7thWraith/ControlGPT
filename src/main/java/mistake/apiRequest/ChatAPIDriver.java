@@ -11,6 +11,7 @@ import java.util.List;
 import lombok.Getter;
 import mistake.ControlGPT;
 import mistake.Data.Action;
+import mistake.Event.Event;
 import mistake.Event.events.EventMessageRecieved;
 import mistake.Event.events.EventRequestRejected;
 import mistake.Event.events.EventSendRequest;
@@ -44,11 +45,17 @@ public class ChatAPIDriver {
                 sentMessages.put(singleMessage);
             }
 
+
             request.put("model", this.model);
             request.put("messages", sentMessages);
             request.put("temperature", this.temperature);
             request.put("max_tokens", this.max_tokens);
             this.jsonResponse = request.toString();
+
+            // Pre Event fire
+            EventSendRequest sendRequest = new EventSendRequest(request.toString());
+            sendRequest.setType(Event.EventType.PRE);
+            ControlGPT.INSTANCE.getBus().post(sendRequest);
 
             URL url = new URL("https://api.openai.com/v1/chat/completions");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -60,7 +67,10 @@ public class ChatAPIDriver {
             OutputStream outputStream = con.getOutputStream();
             outputStream.write(request.toString().getBytes("UTF-8"));
             outputStream.close();
-            ControlGPT.INSTANCE.getBus().post(new EventSendRequest(request.toString()));
+
+            // Post event fire
+            sendRequest.setType(Event.EventType.POST);
+            ControlGPT.INSTANCE.getBus().post(sendRequest);
 
             int responseCode = con.getResponseCode();
             System.out.println("Response Code: " + responseCode);
@@ -80,6 +90,8 @@ public class ChatAPIDriver {
                     JSONArray choices = jsonResponse.getJSONArray("choices");
                     JSONObject choices2 = new JSONObject(choices.get(0).toString());
                     JSONObject choices3 = new JSONObject(choices2.get("message").toString());
+
+                    // TODO: Add a Pre and Post event for this to allow for custom handling/editing of the response
                     ControlGPT.INSTANCE.getBus().post(new EventMessageRecieved(choices3.get("content").toString()));
                     return choices3.get("content").toString();
                 } catch (Exception e) {

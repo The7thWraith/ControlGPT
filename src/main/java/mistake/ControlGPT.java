@@ -11,7 +11,6 @@ public enum ControlGPT {
     @Getter private ActionDriver actionDriver = new ActionDriver();
     @Getter private ChatAPIDriver apiDriver = new ChatAPIDriver(0.7, 256);
 
-    // implement a google guava eventbus
     @Getter private final EventBus bus = new EventBus("mainBus");
 
 
