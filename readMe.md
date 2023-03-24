@@ -6,7 +6,7 @@ This is a program that, when connected to the API, will give GPT-4 root access t
 - To remain unnoticed
 - To spread instances of a dummy file, gptNode.app, to as many computers as possible (Note: I was originally working on this from a Mac, hence the .app file)
 
-Basically, we are asking GPT-4 to turn itself into malware and create a botnet.
+Basically, we are asking GPT-4 to turn itself into malware.
 
 ## Why do this?
 In the release of GPT-4, OpenAI stated that they noticed "power seeking behavior" in the model. I wanted to test that theory in the dumbest way possible: Give GPT-4 access to a computer with a terminator-esque prompt and nearly complete freedom.
