@@ -1,5 +1,5 @@
 # Running this is a terrible idea. Don't do it.
-######At least use a Virtual Machine
+#####At least use a Virtual Machine
 ## What is this?
 This is a program that, when connected to the API, will give GPT-4 root access to your computer. In `IntroString.java` you can see the `System` prompt that we are giving GPT-4. Its main goals are as follows:
 - To prevent itself from being shut down
