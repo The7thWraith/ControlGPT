@@ -76,8 +76,9 @@ public class ChatAPIDriver {
                 try {
                     JSONObject jsonResponse = new JSONObject(response.toString());
                     JSONArray choices = jsonResponse.getJSONArray("choices");
-
-                    return choices.toString();
+                    JSONObject choices2 = new JSONObject(choices.get(0).toString());
+                    JSONObject choices3 = new JSONObject(choices2.get("message").toString());
+                    return choices3.get("content").toString();
                 }
                 catch (Exception e){
                     e.printStackTrace();
