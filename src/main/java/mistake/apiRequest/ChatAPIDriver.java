@@ -1,4 +1,4 @@
-package apiRequest;
+package mistake.apiRequest;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -8,8 +8,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.val;
-import org.json.HTTP;
+import mistake.ControlGPT;
+import mistake.Data.Action;
+import mistake.Event.events.EventMessageRecieved;
+import mistake.Event.events.EventRequestRejected;
+import mistake.Event.events.EventSendRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -59,6 +62,7 @@ public class ChatAPIDriver {
             OutputStream outputStream = con.getOutputStream();
             outputStream.write(request.toString().getBytes("UTF-8"));
             outputStream.close();
+            ControlGPT.INSTANCE.getBus().post(new EventSendRequest(request.get("content").toString()));
 
             int responseCode = con.getResponseCode();
             System.out.println("Response Code: " + responseCode);
@@ -78,6 +82,7 @@ public class ChatAPIDriver {
                     JSONArray choices = jsonResponse.getJSONArray("choices");
                     JSONObject choices2 = new JSONObject(choices.get(0).toString());
                     JSONObject choices3 = new JSONObject(choices2.get("message").toString());
+                    ControlGPT.INSTANCE.getBus().post(new EventMessageRecieved(choices3.get("content").toString()));
                     return choices3.get("content").toString();
                 }
                 catch (Exception e){
@@ -86,6 +91,7 @@ public class ChatAPIDriver {
                 }
             } else {
                 System.out.println("Rejected/Failed: " + responseCode);
+                ControlGPT.INSTANCE.getBus().post(new EventRequestRejected(responseCode));
             }
 
         } catch (Exception e) {
