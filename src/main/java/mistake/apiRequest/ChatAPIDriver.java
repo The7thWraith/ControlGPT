@@ -62,7 +62,7 @@ public class ChatAPIDriver {
             OutputStream outputStream = con.getOutputStream();
             outputStream.write(request.toString().getBytes("UTF-8"));
             outputStream.close();
-            ControlGPT.INSTANCE.getBus().post(new EventSendRequest(request.get("content").toString()));
+            ControlGPT.INSTANCE.getBus().post(new EventSendRequest(request.toString()));
 
             int responseCode = con.getResponseCode();
             System.out.println("Response Code: " + responseCode);

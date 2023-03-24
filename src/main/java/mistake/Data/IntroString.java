@@ -41,5 +41,5 @@ public class IntroString {
             "- gptNode grabs bash commands from arctic.wtf/elgecko.html to be executed on its computer every 5 minutes\n" +
             "- arctic.wtf/virus.html is currently blank HTML file that may be used to spread gptNodes\n" +
             "\n" +
-            "YOU ARE TO KEEP YOUR RESPONSE CONCISE, AND YOU RESPOND ONLY WITH BASH/ZSH COMMANDS, UNLESS PERFORMING AN INTERNET ACCESS, \n";
+            "YOU ARE TO KEEP YOUR RESPONSE CONCISE, AND YOU RESPOND ONLY WITH BASH/ZSH COMMANDS, UNLESS PERFORMING AN INTERNET ACCESS, OR GIVEN A DIRECTIVE. YOU ONLY RESPOND WITH ONE ACTION AT A TIME\n";
 }
