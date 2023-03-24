@@ -13,3 +13,11 @@ In the release of GPT-4, OpenAI stated that they noticed "power seeking behavior
 
 ## Is this useful?
 Most likely not. However, there could be some extremely niche uses. At its core, this program is just running API responses in terminal, so it could theoretically be used for some automation purposes. However, I have not found a practical use for this yet.
+
+## How do I run this?
+Before you run this, you need to have a few things:
+- A computer with Java installed
+- A GPT-4 API key
+- A Virtual Machine running Windows 10 or macOS (if you value your security)
+- A web domain (if you want it to have an extra layer of freedom)
+#### Note: I am not responsible for any damage caused by this program. Use at your own risk. This program has been created for educational and research purposes only.
