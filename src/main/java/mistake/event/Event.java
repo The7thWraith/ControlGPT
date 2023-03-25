@@ -1,4 +1,4 @@
-package mistake.Event;
+package mistake.event;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -5,16 +5,14 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
 import mistake.ControlGPT;
-import mistake.Data.Action;
-import mistake.Event.Event;
-import mistake.Event.events.EventMessageRecieved;
-import mistake.Event.events.EventRequestRejected;
-import mistake.Event.events.EventSendRequest;
+import mistake.event.Event;
+import mistake.event.events.EventMessageRecieved;
+import mistake.event.events.EventRequestRejected;
+import mistake.event.events.EventSendRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

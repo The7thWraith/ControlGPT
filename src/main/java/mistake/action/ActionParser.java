@@ -1,6 +1,6 @@
 package mistake.action;
 
-import mistake.Data.Action;
+import mistake.data.Action;
 
 public class ActionParser {
 

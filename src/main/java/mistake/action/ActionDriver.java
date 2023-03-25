@@ -1,21 +1,27 @@
 package mistake.action;
 
-import mistake.Data.Action;
+import mistake.ControlGPT;
+import mistake.data.Action;
+import mistake.event.events.EventCommandAction;
+import mistake.event.events.EventCommandError;
+import mistake.event.events.EventSendRequest;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ActionDriver {
     // This is where it gets dangerous
     ArrayList<String> siteCommandList = new ArrayList<String>();
     ArrayList<String> internetActionList = new ArrayList<String>();
 
-    // Take an mistake.action string and either execute it or turn it into a GPT-4 command to turn the internet mistake.action into a command string
-    public void executeAction(Action action){
+    public String executeAction(Action action){
         if(action.actionType.equals(ActionType.COMMAND)){
             try{
-                runCommand(action.action);
+                Runtime runtime = Runtime.getRuntime();
+                runtime.exec(action.action);
             } catch (IOException e){
+                ControlGPT.INSTANCE.getBus().post(new EventCommandError(Arrays.toString(e.getStackTrace())));
                 e.printStackTrace();
             }
         } else if(action.actionType.equals(ActionType.SITEEDIT)){
@@ -26,13 +32,4 @@ public class ActionDriver {
             internetActionList.add(action.action);
         }
     }
-
-    // Write a function to run a command string in the terminal
-    public void runCommand(String command) throws IOException {
-        // Run the command
-        Runtime runtime = Runtime.getRuntime();
-        runtime.exec(command);
-    }
-
-
 }

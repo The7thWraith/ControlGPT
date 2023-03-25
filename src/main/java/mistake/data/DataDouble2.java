@@ -1,4 +1,4 @@
-package mistake.Data;
+package mistake.data;
 
 public class DataDouble2 {
 }

@@ -1,7 +1,7 @@
-package mistake.Event.events;
+package mistake.event.events;
 
 import lombok.Getter;
-import mistake.Event.Event;
+import mistake.event.Event;
 
 public class EventCommandError extends Event {
 

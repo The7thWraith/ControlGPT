@@ -1,5 +1,5 @@
-package mistake.Event.events;
-import mistake.Event.Event;
+package mistake.event.events;
+import mistake.event.Event;
 
 import lombok.Getter;
 
