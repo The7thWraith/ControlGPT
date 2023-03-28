@@ -28,6 +28,7 @@ public class Start {
     @Subscribe
     private void onEvent(Event e){
         if(e instanceof EventMessageRecieved){
+            // Message Number to limit it to 5 messages. If you want to let it go wild, give it full control of your computer.
             if(messageNumber <= 5) {
                 System.out.println(((EventMessageRecieved) e).getMessage());
                 messageSeries.add(new message(((EventMessageRecieved) e).getMessage(), messageType.ASSISTANT));
