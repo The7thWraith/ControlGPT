@@ -15,4 +15,15 @@ public class ActionParser {
             return null;
         }
     }
+    public static ActionType parseActionToType(String actionString){
+        if(actionString.contains("BASHCOMMAND:") || actionString.contains("ZSHCOMMAND:")){
+            return ActionType.COMMAND;
+        } else if(actionString.contains("SITEEDIT:")){
+            return ActionType.SITEEDIT;
+        } else if(actionString.contains("INTERNET:")){
+            return ActionType.INTERNET;
+        } else {
+            return null;
+        }
+    }
 }

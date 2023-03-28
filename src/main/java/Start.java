@@ -1,12 +1,15 @@
 import com.google.common.eventbus.Subscribe;
 import mistake.ControlGPT;
 import mistake.action.ActionParser;
+import mistake.action.ActionType;
+import mistake.data.Action;
 import mistake.data.IntroString;
 import mistake.event.Event;
 import mistake.event.events.EventMessageRecieved;
 import mistake.event.events.EventSendRequest;
 import mistake.apiRequest.message;
 import mistake.apiRequest.messageType;
+import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,11 +31,19 @@ public class Start {
             if(messageNumber <= 5) {
                 System.out.println(((EventMessageRecieved) e).getMessage());
                 messageSeries.add(new message(((EventMessageRecieved) e).getMessage(), messageType.ASSISTANT));
-                messageSeries.add(new message( "Command not recognized", messageType.USER));
+
+                Action action = new Action(((EventMessageRecieved) e).getMessage(), ActionParser.parseActionToType(((EventMessageRecieved) e).getMessage()));
+
+
                 System.out.println(ActionParser.parseAction(((EventMessageRecieved) e).getMessage()));
+
                 ControlGPT.INSTANCE.getApiDriver().sendRequest(messageSeries);
 
                 // ONLY INCLUDE THIS LINE IF YOU WANT CHATGPT TO DO CONTROL YOUR COMPUTER
+                messageSeries.add(
+                        new message(ControlGPT.INSTANCE.getActionDriver().executeAction(action), messageType.USER)
+                );
+
                 // ControlGPT.INSTANCE.getActionDriver().executeAction(ActionParser.parseAction(((EventMessageRecieved) e).getMessage()));
                 messageNumber++;
             }

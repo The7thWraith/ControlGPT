@@ -18,7 +18,7 @@ import org.json.JSONObject;
 
 public class ChatAPIDriver {
     @Getter private final String model = "gpt-4";
-    @Getter private final String api_key = "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";
+    @Getter private final String api_key = "API KEY HERE";
     @Getter private final double temperature;
     @Getter private final int max_tokens;
     @Getter private String jsonResponse;
