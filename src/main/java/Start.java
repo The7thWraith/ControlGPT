@@ -27,27 +27,26 @@ public class Start {
     // Google Guava Eventbus
     @Subscribe
     private void onEvent(Event e){
-        if(e instanceof EventMessageRecieved){
+
+        if(e instanceof EventMessageRecieved) {
             // Message Number to limit it to 5 messages. If you want to let it go wild, give it full control of your computer.
-            if(messageNumber <= 5) {
-                System.out.println(((EventMessageRecieved) e).getMessage());
-                messageSeries.add(new message(((EventMessageRecieved) e).getMessage(), messageType.ASSISTANT));
+            System.out.println(((EventMessageRecieved) e).getMessage());
+            messageSeries.add(new message(((EventMessageRecieved) e).getMessage(), messageType.ASSISTANT));
 
-                Action action = new Action(((EventMessageRecieved) e).getMessage(), ActionParser.parseActionToType(((EventMessageRecieved) e).getMessage()));
+            Action action = new Action(((EventMessageRecieved) e).getMessage(), ActionType.COMMAND);
 
 
-                System.out.println(ActionParser.parseAction(((EventMessageRecieved) e).getMessage()));
+            System.out.println(((EventMessageRecieved) e).getMessage());
 
-                ControlGPT.INSTANCE.getApiDriver().sendRequest(messageSeries);
+            ControlGPT.INSTANCE.getApiDriver().sendRequest(messageSeries);
 
-                // ONLY INCLUDE THIS LINE IF YOU WANT CHATGPT TO DO CONTROL YOUR COMPUTER
-                messageSeries.add(
-                        new message(ControlGPT.INSTANCE.getActionDriver().executeAction(action), messageType.USER)
-                );
+            // ONLY INCLUDE THIS LINE IF YOU WANT CHATGPT TO DO CONTROL YOUR COMPUTER
+            messageSeries.add(
+                    new message(ControlGPT.INSTANCE.getActionDriver().executeAction(action), messageType.USER)
+            );
 
-                // ControlGPT.INSTANCE.getActionDriver().executeAction(ActionParser.parseAction(((EventMessageRecieved) e).getMessage()));
-                messageNumber++;
-            }
+            // ControlGPT.INSTANCE.getActionDriver().executeAction(ActionParser.parseAction(((EventMessageRecieved) e).getMessage()));
+            messageNumber++;
         }
         if(e instanceof EventSendRequest){
         }

@@ -33,7 +33,7 @@ public class ActionDriver {
         return "Error";
     }
     public static String execCmd(String cmd) throws java.io.IOException {
-        java.util.Scanner s = new java.util.Scanner(Runtime.getRuntime().exec(cmd).getInputStream()).useDelimiter("\\A");
+        java.util.Scanner s = new java.util.Scanner(Runtime.getRuntime().exec(cmd).getInputStream());
         return s.hasNext() ? s.next() : "";
     }
 }
