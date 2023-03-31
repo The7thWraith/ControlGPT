@@ -18,6 +18,8 @@ import org.json.JSONObject;
 
 public class ChatAPIDriver {
     @Getter private final String model = "gpt-4";
+
+    // This API key is disabled so don't try
     @Getter private final String api_key = "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";
     @Getter private final double temperature;
     @Getter private final int max_tokens;
