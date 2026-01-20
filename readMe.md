@@ -1,3 +1,6 @@
+## 2026 Update
+I made this project before AutoGPT came out. All I want to say is that I was ahead of the curve on AI agents **:)**
+
 # Running this is a terrible idea. Don't do it.
 At least use a Virtual Machine
 ## What is this?
